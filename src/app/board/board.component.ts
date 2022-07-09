@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Tile} from "../core/enums/tile";
+import {Tile} from "../core";
 
 @Component({
   selector: 'app-board',
@@ -41,21 +41,25 @@ export class BoardComponent implements OnInit {
     // Vertical
     for(let col = 0; col < this.board[0].length; col++) {
       if(this.board[0][col] === this.board[1][col] && this.board[0][col] === this.board[2][col] && this.board[0][col] !== Tile.EMPTY) {
-        this.gameStatus = false
+        this.stopGame()
         return true
       }
     }
 
     // Diagonal
     if(this.board[0][0] === this.board[1][1] && this.board[0][0] === this.board[2][2] && this.board[0][0] !== Tile.EMPTY) {
-      this.gameStatus = false
+      this.stopGame()
       return true
     }
     if(this.board[2][0] === this.board[1][1] && this.board[2][0] === this.board[0][2] && this.board[2][0] !== Tile.EMPTY) {
-      this.gameStatus = false
+      this.stopGame()
       return true
     }
     return false
+  }
+
+  stopGame(): void {
+    this.gameStatus = false
   }
 
   isDraw(): boolean {
