@@ -1,0 +1,17 @@
+<div class="players">
+  <p class="player1" [class.active]="currentPlayer === 'X'">Player 1</p>
+  <p class="win" *ngIf="isWin()">{{currentPlayer !== 'X' ? 'Player 1' : 'Player 2'}} wins</p>
+  <p class="draw" *ngIf="isDraw()">Draw</p>
+  <p class="player2" [class.active]="currentPlayer === 'O'">Player 2</p>
+</div>
+
+<div class="container">
+  <div class="board">
+    <div class="row" *ngFor="let row of [0,1,2]">
+      <board-tile *ngFor="let col of [0,1,2]" [row]="row" [col]="col" [figure]="board[row][col]"
+                  (click)="turn(row, col)"></board-tile>
+    </div>
+  </div>
+
+  <button class="restart" (click)="newGame()">Restart</button>
+</div>
