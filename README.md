@@ -1,1 +1,1 @@
-PET project. Game tictactoe
+PET project. Tictactoe game
